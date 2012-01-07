@@ -97,7 +97,8 @@ class Renderer(Explicit):
     def update(self):
         pass
 
-    def get_portlet_style(self):
+    @property
+    def portlet_style(self):
         """Returns the configured CSS classes for this portlet."""
         return self.data.portlet_style
 
