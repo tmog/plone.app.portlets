@@ -35,6 +35,7 @@
                 <element>published</element>
                 <element>private</element>
             </property>
+            <property name="test_style">noheader yellow</property>
     </assignment>
 
     <assignment
@@ -48,6 +49,7 @@
             <property name="test_text">Test prop 2</property>
             <property name="test_bool">True</property>
             <property name="test_tuple" />
+            <property name="test_style">noheader yellow</property>
     </assignment>
 
     <assignment
@@ -105,6 +107,7 @@
         <property name="includeTop">False</property>
         <property name="bottomLevel">0</property>
         <property name="root"></property>
+        <property name="test_style">noheader yellow</property>
     </assignment>
 
     <blacklist

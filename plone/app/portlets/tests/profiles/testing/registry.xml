@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="plone.app.portlets.browser.interfaces.IPortletStyles">
+    <value key="portlet_styles" purge="false">
+      <element>noheader|No header</element>
+      <element>yellow|Yellow portlet</element>
+      <element>noheader yellow|Yellow portlet without header</element>
+    </value>
+  </records>
+</registry>

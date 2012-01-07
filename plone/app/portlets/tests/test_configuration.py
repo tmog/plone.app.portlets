@@ -67,6 +67,7 @@ class ITestPortlet(IPortletDataProvider):
     test_bool = schema.Bool(title=u"Test")
     test_tuple = schema.Tuple(title=u"Test",
                               value_type=schema.Choice(vocabulary="plone.app.vocabularies.WorkflowStates"))
+    test_style = base.PortletStyleField
 
 
 class TestAssignment(base.Assignment):
@@ -92,6 +93,7 @@ class TestAddForm(base.AddForm):
     def create(self, data):
         a = TestAssignment()
         a.title = data.get('title', u"")
+        a.portlet_style = data.get('portlet_style', '')
         return a
 
 
@@ -194,6 +196,7 @@ class TestGenericSetup(PortletsTestCase):
         portal_setup = self.portal.portal_setup
         # wait a bit or we get duplicate ids on import
         time.sleep(0.2)
+        portal_setup.runAllImportStepsFromProfile('profile-plone.app.portlets:default')
         portal_setup.runAllImportStepsFromProfile('profile-plone.app.portlets:testing')
 
     def testPortletManagerInstalled(self):
@@ -494,36 +497,42 @@ class TestGenericSetup(PortletsTestCase):
  <assignment name="test.portlet6" category="group" key="Reviewers"
     manager="test.testcolumn" type="portlets.test.Test" visible="True">
   <property name="test_bool"/>
+  <property name="portlet_style"></property>
   <property name="test_tuple"/>
   <property name="test_text"/>
  </assignment>
  <assignment name="test.portlet4" category="content_type" key="Folder"
     manager="test.testcolumn" type="portlets.test.Test" visible="True">
   <property name="test_bool"/>
+  <property name="portlet_style"></property>
   <property name="test_tuple"/>
   <property name="test_text"/>
  </assignment>
  <assignment name="test.portlet5" category="content_type" key="Folder"
     manager="test.testcolumn" type="portlets.test.Test" visible="True">
   <property name="test_bool"/>
+  <property name="portlet_style"></property>
   <property name="test_tuple"/>
   <property name="test_text"/>
  </assignment>
  <assignment name="test.portlet3" category="context" key="/"
     manager="test.testcolumn" type="portlets.test.Test" visible="True">
   <property name="test_bool"/>
+  <property name="portlet_style"></property>
   <property name="test_tuple"/>
   <property name="test_text"/>
  </assignment>
  <assignment name="test.portlet2" category="context" key="/"
     manager="test.testcolumn" type="portlets.test.Test" visible="False">
   <property name="test_bool">True</property>
+  <property name="portlet_style">noheader yellow</property>
   <property name="test_tuple"/>
   <property name="test_text">Test prop 2</property>
  </assignment>
  <assignment name="test.portlet1" category="context" key="/"
     manager="test.testcolumn" type="portlets.test.Test" visible="True">
   <property name="test_bool">False</property>
+  <property name="portlet_style">noheader yellow</property>
   <property name="test_tuple">
    <element>published</element>
    <element>private</element>
@@ -533,6 +542,7 @@ class TestGenericSetup(PortletsTestCase):
  <assignment name="navigation" category="context" key="/"
     manager="test.testcolumn2" type="portlets.Navigation" visible="True">
   <property name="topLevel">1</property>
+  <property name="portlet_style"></property>
   <property name="currentFolderOnly">False</property>
   <property name="name"></property>
   <property name="includeTop">False</property>
