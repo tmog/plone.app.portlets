@@ -19,6 +19,7 @@ def render_cachekey(fun, self):
     * Portlet manager
     * Assignment
     * Fingerprint of the data used by the portlet
+    * Portlet style in use
 
     """
     context = aq_inner(self.context)
@@ -36,4 +37,5 @@ def render_cachekey(fun, self):
         str(anonymous),
         self.manager.__name__,
         self.data.__name__,
+        getattr(self.data, 'portlet_style', ''),
         fingerprint))
