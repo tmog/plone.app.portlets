@@ -7,7 +7,7 @@
   <configlet title="Portlet styles"
              action_id="portletstyles"
              appId="plone.app.portlets"
-             category="Products"
+             category="Plone"
              condition_expr=""
              url_expr="string:${portal_url}/@@portletstyles"
              visible="True"
