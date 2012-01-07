@@ -63,7 +63,7 @@ def parse_style(style):
 
     # Check for empty title part
     if not title:
-        raise Exception()
+        raise ValueError
 
     # Check for empty CSS class part
     if not css:
@@ -72,13 +72,13 @@ def parse_style(style):
     # Check for CSS class validity; a style can have multiple CSS classes
     # so we first need to split them
     for cls in css.split():
-        if not _is_valid_css_class(cls):
+        if not is_valid_css_class(cls):
             raise InvalidCssClassError()
 
     return css, title
 
 
-def _is_valid_css_class(string):
+def is_valid_css_class(string):
     """Check if string is a valid CSS class.
     http://stackoverflow.com/questions/448981/what-characters-are-valid-in-css-class-names
 
