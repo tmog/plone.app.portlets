@@ -22,13 +22,16 @@ class IClassicPortlet(IPortletDataProvider):
                          default='portlet',
                          required=True)
 
+    portlet_style = base.PortletStyleField
+
 
 class Assignment(base.Assignment):
     implements(IClassicPortlet)
 
-    def __init__(self, template='', macro=''):
+    def __init__(self, template='', macro='', portlet_style=''):
         self.template = template
         self.macro = macro
+        self.portlet_style = portlet_style
 
     @property
     def title(self):
@@ -61,7 +64,8 @@ class AddForm(base.AddForm):
 
     def create(self, data):
         return Assignment(template=data.get('template', ''),
-                          macro=data.get('macro', ''))
+                          macro=data.get('macro', ''),
+                          portlet_style=data.get('portlet_style', ''))
 
 
 class EditForm(base.EditForm):

@@ -1,6 +1,11 @@
-from zope.interface import Interface, Attribute
-from zope.browser.interfaces import IAdding
 from plone.app.form.interfaces import IPlonePageForm
+from plone.app.portlets import PloneMessageFactory as _
+from plone.app.portlets.styles import styles_formatting
+from zope.browser.interfaces import IAdding
+from zope.interface import Interface, Attribute
+from zope.schema import ASCIILine
+from zope.schema import List
+
 
 class IPortletAdding(IAdding):
     """Marker interface for the add view for portlet managers.
@@ -9,6 +14,7 @@ class IPortletAdding(IAdding):
     """
 
 class IPortletForm(IPlonePageForm):
+
     """Generic marker for form views that are used to create or edit portlets.
     """
 
@@ -67,3 +73,17 @@ class IManageGroupPortletsView(IManageColumnPortletsView):
 class IManageContentTypePortletsView(IManageColumnPortletsView):
     """Marker for the manage content type portlets view
     """
+
+class IPortletStyles(Interface):
+    """Control panel configuration of available portlet styles."""
+
+    portlet_styles = List(
+        title=_(u'label_portlet_styles', default=u'Available portlet styles'),
+        description=_(u'description_portlet_styles',
+            default=u'Enter portlet styles that users will be able to '
+                    u'choose from the dropdown menu when editing portlets. '
+                    u'One style per line. '),
+        value_type=ASCIILine(),
+        required=False,
+        constraint=styles_formatting,
+    )

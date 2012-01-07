@@ -32,13 +32,16 @@ class INewsPortlet(IPortletDataProvider):
                              vocabulary="plone.app.vocabularies.WorkflowStates")
                          )
 
+    portlet_style = base.PortletStyleField
+
 
 class Assignment(base.Assignment):
     implements(INewsPortlet)
 
-    def __init__(self, count=5, state=('published', )):
+    def __init__(self, count=5, state=('published', ), portlet_style=''):
         self.count = count
         self.state = state
+        self.portlet_style = portlet_style
 
     @property
     def title(self):
@@ -95,7 +98,10 @@ class AddForm(base.AddForm):
     description = _(u"This portlet displays recent News Items.")
 
     def create(self, data):
-        return Assignment(count=data.get('count', 5), state=data.get('state', ('published', )))
+        return Assignment(
+            count=data.get('count', 5),
+            state=data.get('state', ('published', )),
+            portlet_style=data.get('portlet_style', ''))
 
 
 class EditForm(base.EditForm):

@@ -90,6 +90,8 @@ class INavigationPortlet(IPortletDataProvider):
             default=0,
             required=False)
 
+    portlet_style = base.PortletStyleField
+
 
 class Assignment(base.Assignment):
     implements(INavigationPortlet)
@@ -103,13 +105,14 @@ class Assignment(base.Assignment):
     topLevel = 1
     bottomLevel = 0
 
-    def __init__(self, name=u"", root=None, currentFolderOnly=False, includeTop=False, topLevel=1, bottomLevel=0):
+    def __init__(self, name=u"", root=None, currentFolderOnly=False, includeTop=False, topLevel=1, bottomLevel=0, portlet_style=''):
         self.name = name
         self.root = root
         self.currentFolderOnly = currentFolderOnly
         self.includeTop = includeTop
         self.topLevel = topLevel
         self.bottomLevel = bottomLevel
+        self.portlet_style = portlet_style
 
 
 class Renderer(base.Renderer):
@@ -225,7 +228,8 @@ class AddForm(base.AddForm):
                           currentFolderOnly=data.get('currentFolderOnly', False),
                           includeTop=data.get('includeTop', False),
                           topLevel=data.get('topLevel', 0),
-                          bottomLevel=data.get('bottomLevel', 0))
+                          bottomLevel=data.get('bottomLevel', 0),
+                          portlet_style=data.get('portlet_style', ''))
 
 
 class EditForm(base.EditForm):

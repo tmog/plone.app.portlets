@@ -1,10 +1,12 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:five="http://namespaces.zope.org/five">
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
     <include package="plone.portlets" />
     <include package="plone.app.vocabularies" />
+    <include package="plone.app.registry" />
 
     <five:registerPackage package="." />
 
@@ -63,6 +65,20 @@
       provides="zope.container.interfaces.INameChooser"
       for="plone.portlets.interfaces.IPortletAssignmentMapping"
       factory=".storage.PortletsNameChooser"
+      />
+
+    <!-- Register a vocabulary of portlet styles -->
+    <utility
+      component=".vocabulary.StylesVocabularyFactory"
+      name="plone.app.portlets.StylesVocabulary"
+      />
+
+    <genericsetup:registerProfile
+      name="default"
+      title="plone.app.portlets"
+      directory="profiles/default"
+      description="Installs plone.app.portlets"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
 </configure>

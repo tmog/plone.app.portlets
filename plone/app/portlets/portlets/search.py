@@ -22,12 +22,15 @@ class ISearchPortlet(IPortletDataProvider):
             default = True,
             required = False)
 
+    portlet_style = base.PortletStyleField
+
 
 class Assignment(base.Assignment):
     implements(ISearchPortlet)
 
-    def __init__(self, enableLivesearch=True):
-        self.enableLivesearch=enableLivesearch
+    def __init__(self, enableLivesearch=True, portlet_style=''):
+        self.enableLivesearch = enableLivesearch
+        self.portlet_style = portlet_style
 
     @property
     def title(self):
@@ -57,7 +60,7 @@ class AddForm(base.AddForm):
     description = _(u"This portlet shows a search box.")
 
     def create(self, data):
-        return Assignment()
+        return Assignment(portlet_style=data.get('portlet_style', ''))
 
 
 class EditForm(base.EditForm):

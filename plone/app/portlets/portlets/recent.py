@@ -22,12 +22,15 @@ class IRecentPortlet(IPortletDataProvider):
                        required=True,
                        default=5)
 
+    portlet_style = base.PortletStyleField
+
 
 class Assignment(base.Assignment):
     implements(IRecentPortlet)
 
-    def __init__(self, count=5):
+    def __init__(self, count=5, portlet_style=''):
         self.count = count
+        self.portlet_style = portlet_style
 
     @property
     def title(self):
@@ -92,7 +95,9 @@ class AddForm(base.AddForm):
     description = _(u"This portlet displays recently modified content.")
 
     def create(self, data):
-        return Assignment(count=data.get('count', 5))
+        return Assignment(
+            count=data.get('count', 5),
+            portlet_style=data.get('portlet_style', ''))
 
 
 class EditForm(base.EditForm):

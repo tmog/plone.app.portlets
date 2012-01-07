@@ -8,10 +8,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from zope.container.contained import Contained
 from zope.interface import implements
+from zope import schema
 #from zope.interface import Interface
 #from zope.component import adapts
 #from zope.publisher.interfaces.browser import IBrowserView
 
+from plone.app.portlets import PloneMessageFactory as _
 from plone.app.portlets.interfaces import IDeferredPortletRenderer
 from plone.portlets.interfaces import IPortletAssignment
 #from plone.portlets.interfaces import IPortletDataProvider
@@ -24,6 +26,15 @@ from plone.app.portlets.browser.formhelper import NullAddForm
 from plone.app.portlets.browser.formhelper import EditForm
 
 
+PortletStyleField = schema.Choice(
+        title=_(u"Portlet style"),
+        description=_(u"Select this portlet's style"),
+        vocabulary=u"plone.app.portlets.StylesVocabulary",
+        required=True,
+        default=" ",  # This makes the 'Default style' selected by default
+    )
+
+
 class Assignment(SimpleItem, Contained):
     """Base class for assignments.
 
@@ -34,6 +45,10 @@ class Assignment(SimpleItem, Contained):
     implements(IPortletAssignment)
 
     __name__ = ''
+    portlet_style = ''
+
+    def __init__(self, *args, **kwargs):
+        self.portlet_style = kwargs.get('portlet_style', '')
 
     @property
     def id(self):
@@ -81,6 +96,10 @@ class Renderer(Explicit):
 
     def update(self):
         pass
+
+    def get_portlet_style(self):
+        """Returns the configured CSS classes for this portlet."""
+        return self.data.portlet_style
 
     def render(self):
         raise NotImplementedError("You must implement 'render' as a method "

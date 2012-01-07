@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="plone.app.portlets.browser.interfaces.IPortletStyles">
+    <value key="portlet_styles" purge="false">
+    </value>
+  </records>
+</registry>

@@ -222,6 +222,8 @@ class IRSSPortlet(IPortletDataProvider):
                         required=True,
                         default=100)
 
+    portlet_style = base.PortletStyleField
+
 
 class Assignment(base.Assignment):
     implements(IRSSPortlet)
@@ -237,11 +239,12 @@ class Assignment(base.Assignment):
         else:
             return u'RSS: '+feed.title[:20]
 
-    def __init__(self, portlet_title=u'', count=5, url=u"", timeout=100):
+    def __init__(self, portlet_title=u'', count=5, url=u"", timeout=100, portlet_style=''):
         self.portlet_title = portlet_title
         self.count = count
         self.url = url
         self.timeout = timeout
+        self.portlet_style = portlet_style
 
 
 class Renderer(base.DeferredRenderer):
@@ -319,7 +322,8 @@ class AddForm(base.AddForm):
         return Assignment(portlet_title=data.get('portlet_title', u''),
                           count=data.get('count', 5),
                           url = data.get('url', ''),
-                          timeout = data.get('timeout', 100))
+                          timeout = data.get('timeout', 100),
+                          portlet_style=data.get('portlet_style', ''))
 
 
 class EditForm(base.EditForm):

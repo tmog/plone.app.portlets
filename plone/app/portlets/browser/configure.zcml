@@ -240,4 +240,12 @@
         file="portlets.kss"
         />
 
+    <!-- Control panel configlet for portlet styles -->
+    <browser:page
+        name="portletstyles"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.PortletStylesControlPanel"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
