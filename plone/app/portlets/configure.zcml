@@ -69,7 +69,7 @@
 
     <!-- Register a vocabulary of portlet styles -->
     <utility
-      component=".vocabulary.StylesVocabularyFactory"
+      component=".styles.StylesVocabularyFactory"
       name="plone.app.portlets.StylesVocabulary"
       />
 
