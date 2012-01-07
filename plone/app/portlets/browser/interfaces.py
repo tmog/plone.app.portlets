@@ -82,7 +82,8 @@ class IPortletStyles(Interface):
         description=_(u'description_portlet_styles',
             default=u'Enter portlet styles that users will be able to '
                     u'choose from the dropdown menu when editing portlets. '
-                    u'One style per line. '),
+                    u'Each style declaration must consist of a pipe delimeted <css class names> | <title> pair '
+                    u'and be defined on a separate line.'),
         value_type=ASCIILine(),
         required=False,
         constraint=styles_formatting,
