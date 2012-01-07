@@ -3,6 +3,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag="">
 <dl class="portlet portletRss"
+    tal:attributes="class string:portlet portletRss ${view/portlet_style}"
     i18n:domain="plone"
     tal:condition="view/enabled">
 
