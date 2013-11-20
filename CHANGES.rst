@@ -1,8 +1,35 @@
 Changelog
 =========
 
-2.5a1 (unreleased)
+2.5a2 (unreleased)
 ------------------
+
+- Don't break if portal_factory is missing.
+  [davisagli]
+
+- Don't show the ``New user?`` link in the Login portlet if there isn't
+  a register URL available from portal_actions.
+  [davidjb] 
+
+2.5a1 (2013-10-05)
+------------------
+
+- Merge in changes from plone.app.event. portlets.Calendar and portlets.Events
+  are moved to plone.app.event, while here are still BBB imports from there.
+  [thet]
+
+- Acquisition-wrap portlet assignments retrieved from storage.
+  [davisagli]
+
+- fix z3cform support - add status messages when redirecting
+  [sunew / tmog]
+
+- fix z3cform support - respect referer
+  [tmog / sunew]
+
+- fix z3cform support - fix for vocabularies, lifted from
+  p.dexterity addForm.
+  [tmog / sunew]
 
 - Don't require a macro for classic portlets - rendering a browser view doesn't
   need one.

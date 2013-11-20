@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '2.5a1.dev0'
+version = '2.5a2.dev.0'
 
 setup(name='plone.app.portlets',
       version=version,
@@ -27,6 +27,7 @@ setup(name='plone.app.portlets',
       extras_require=dict(
         test=[
             'Products.PloneTestCase',
+            'plone.app.event',
         ]
       ),
       install_requires=[
